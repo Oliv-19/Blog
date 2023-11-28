@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #F2F2F2;
+  color: rgb(235, 235, 235);
+}
+
+.header {
+  padding: 20px;
+  font-size: 40px;
+  border-radius: 10px 30px;
+  margin: 0px 55px;
+  display: flex;
+  
+  background: rgba(89, 117, 96, 0.562);
+}
+
+.casita{
+  width: 70px;
+  height: 60px;
+  position: relative;
+  left: 20px;
+  margin-top: 8px;
+}
+
+.titulo{
+  position: relative;
+  left: 30%;
+}
+
+.imagen {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  left: 10px;
+  margin-bottom: 10px;
+}
+
+.border{
+  width: 220px;
+  height: 270px;
+  padding-top: 5px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #F2F2F2;
+}
+
+.name{
+  color: rgba(89, 117, 96, 0.562);
+  position: relative;
+  text-align: end;
+  right: 20px;
+}
+
+.text{
+  margin-top: 60px;
+  width: 600px;
+  color: #F2F2F2;
+}
+
+.fecha{
+  margin-bottom: 10px;
+}
+
+.leftcolumn {   
+  float: left;
+  width: 100%;
+}
+
+.card {
+   background-color: rgba(89, 117, 96, 0.562);
+   padding: 40px;
+   margin: 40px 50px;
+   display: flex;
+   justify-content: space-around;
+   text-align: end;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+</style>
+</head>
+<body>
+  
+<div class="header">
+  <a style="text-decoration: none; color: black;" href="http://127.0.0.1:8000"><img class="casita" src="{{BASE_DIR}}/media/media/casita2.png" alt=""></a>
+  <h2 class="titulo">{{posts.title}}</h2>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+        <div class="border "> 
+          <img class ='imagen ' src="{{BASE_DIR}}/media/{{posts.image}}">
+          <h2 class="name">{{posts.title}}</h2>
+        </div>
+        <div class="text">
+          <h3 class="fecha">{{posts.created_at}}</h3>
+          <p><b>{{posts.body}}</b></p>
+        </div>
+        
+        
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

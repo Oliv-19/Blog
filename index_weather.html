@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Weather</title>
+  <link rel="shortcut icon" href="https://openweathermap.org/img/wn/{{data.icon_id}}@2x.png" type="image/x-icon">
+</head>
+<style>
+
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        
+        background-image: url({{BASE_DIR}}/media/media/{{fondo}});
+        background-color: #EEE1D4;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    nav{
+        padding:  30px 0;
+        background: rgba(0, 0, 0, 0.363);
+        color: white;
+        width: 100%;
+        text-align: center;
+        font-size: larger;
+    }
+    .input_group{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 30px;
+    }
+    .btn{
+        width: 37px;
+        height: 40px;
+        background-color: #E1E1E1;
+        border: none;
+        border-radius: 0px 5px 5px 0px;
+    }
+    .input-icon {
+        color: #272727;
+        margin-top: 20px;
+        width: 25px;
+        height: 25px;
+        transform: translateY(-50%);
+    }
+
+    .input-wrapper {
+        position: relative;
+        width: 60%;
+    }
+    .input {
+        box-sizing: border-box;
+        padding: 12px 15px 11px 35px;
+        width: 100%;
+        background-color: #E1E1E1;
+        border:none;
+        color: #272727;
+        font-weight: bold;
+        font-size: 15px;
+        outline: none;
+        border-radius: 5px 0px 0px 5px;
+    }
+    .input::placeholder{
+        color: #272727;
+        font-weight: bold;
+        font-size: 15px;
+    }
+    .input:focus, .btn:focus{
+        outline: 1px solid #a0a09c;
+    }
+
+    .input:-webkit-autofill,
+    .input:-webkit-autofill:hover, 
+    .input:-webkit-autofill:focus {
+        -webkit-text-fill-color: #272727;
+        -webkit-box-shadow: 0 0 0px 40rem rgb(226, 231, 238)  inset;
+    }
+
+    .imagen{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .row_1{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .datos{
+        width: 100%;
+        height: 100%;
+    }
+    .info{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .izquierda{
+        background-color:  #d3bfab;
+        height: 400px;
+        width: 270px;
+        padding: 20px;
+        margin-right: 20px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 7px 5px 7px #2e2e2e;
+    }
+    .top{
+        position: relative;
+        top: 30px;
+        height: 150px;
+    }
+    
+    
+    .wind, .pressure{
+        margin-top: 60px;
+    }
+    
+    
+    .mini_1{
+        background-color: #C1B3A0;
+        width: 130px;
+        height: 80px;
+        border-radius: 10px;
+        padding: 5px;
+        padding-top: 40px;
+        box-shadow: 7px 5px 7px #2e2e2e;
+    }
+    .derecha{
+        display: flex;
+        justify-content: right;
+        justify-content: space-between;
+        margin-left: 40px;
+    }
+
+    .abajo{
+        display: flex;
+        justify-content: right;
+        justify-content: space-between;
+        margin-left: 40px;
+        margin-top: 20px;
+    }
+
+    .buscar{
+        background-color: #D3BFAB;
+        width: 250px;
+        height: 274px;
+        border-radius: 10px;
+        box-shadow: 7px 5px 7px #2e2e2e;
+    }
+    .mini_row{
+        margin-bottom: 20px;
+        
+    }
+    .mini_row, .mini_row2, .abajo{
+        display: flex;
+        flex-direction: row;
+    }
+    .medium{
+        background-color: #C1B3A0;
+        width: 150px;
+        height: 140px;
+        border-radius: 10px;
+        margin: 0 0px 0px 0px;
+        box-shadow: 7px 5px 7px #2e2e2e;
+    }
+    .hora{
+        background-color: #868681;
+        width: 400px;
+        height: 95px;
+        border-radius: 10px;
+        padding-top: 45px;
+        box-shadow: 7px 5px 7px #2e2e2e;
+    }
+    .right{
+        width: 700px;
+        text-align: center;
+    }
+    .left{
+        margin-right: 10px;
+    }
+    .feels_like{
+        background-color: #C1B3A0;
+    }
+    .humidity{
+        background-color: #856f62;
+    }
+    .temp{
+        background-color: #a79376;
+    }
+    .clouds{
+        background-color: #d3c9bd;
+    }
+    .last{
+        margin-top: 20px;
+    }
+    .searched{
+        text-align: right;
+        margin-top: 7px;
+        margin-right: 33px;
+    }
+    
+
+</style>
+
+
+<body >
+  <nav class="row">
+    <h1 class="col-md-3 text-center">Weather Detector</h1>
+  </nav>
+  <br />
+  <br />
+    
+  <div class="row_1">
+    <div class="datos">
+    <div class="info">
+        
+
+        <div class="izquierda">
+            <div class="top">
+                <h1 class="city ">{{city}}</h1>
+                {% if data.country_code %}
+                    <img src="https://flagsapi.com/{{data.country_code}}/flat/64.png">
+                {% endif %}
+                <h2 class="code ">{{data.country_code}}</h2>
+            </div>
+            <h2 class="wind ">Wind Speed: {{data.wind_speed}}</h2>
+            <h2 class="pressure ">Pressure: {{data.pressure}} </h2>
+        </div>
+        
+        <div class="right">
+            <div class="derecha">
+                <div class="mini">
+
+                    <div class="mini_row">
+                        <h4 id="text" class="left temp mini_1 mini_2">Temperature: <br>{{data.temp}}</h4>
+                        <h4 id="text" class="humidity mini_1 mini_2">Humidity: <br>{{data.humidity}}</h4>
+                    </div>
+                    <div class="mini_row2">
+                        <h4 id="text" class="feels_like left mini_1">Feels like: <br> {{data.feels_like}}</h4>
+                        <h4 id="text" class="clouds mini_1">Clouds: <br> {{data.clouds}}</h4>
+                    </div>
+                </div>    
+            
+                <div class="buscar">
+                    <form action="" method="post" class="col-md-6 col-md-offset-3">
+                        {% csrf_token %}
+                            <div class="input_group">
+                                <div class="input-wrapper">
+                                    <input type="text" class="input" name="city" placeholder="Search" required>
+
+                                </div>
+
+                                <button class="btn btn-default" type="submit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="input-icon" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+
+                            </div>
+                    <form>
+                        <div class="last">
+                            {% for i in last reversed%}
+                            
+                                <h3 class="searched">{{i}}</h3>
+                            
+                            {%endfor%}
+                        </div>
+                </div>
+            </div>
+            <div class="abajo">
+                <div class="hora">
+                    <h1 >{{hora}}</h1>
+                </div>
+
+                <div class="medium">
+                    <img class="icon img " src="https://openweathermap.org/img/wn/{{data.icon_id}}@2x.png" alt=""> 
+                    <h4 class="icon description ">{{data.description}}</h4>
+                </div>
+
+            </div>
+        </div>
+      
+        
+        
+    </div>
+    </div>
+  </div>
+</body>
+</html>
